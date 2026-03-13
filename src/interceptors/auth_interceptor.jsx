@@ -20,4 +20,4 @@ AuthInterceptor.interceptors.request.use(
 );
 
 
-export default AxiosInstance;
+export default AuthInterceptor;

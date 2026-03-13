@@ -1,0 +1,34 @@
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import Navbar from './components/NavBar';
+import Auth from './pages/Auth';
+import Landing from './pages/Landing';
+import Dashboard from './pages/Dashboard';
+import './App.css'
+
+function ProtectedRoute({ children }) {
+  const user = localStorage.getItem('sn_user')
+  if (!user) return <Navigate to="/auth" replace />
+  return children
+}
+
+export default function App() {
+  const location = useLocation()
+
+  return (
+    <div className="min-h-screen bg-gray-900 text-white">
+      {location.pathname !== '/dashboard' && <Navbar />}
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </div>
+  )
+}

@@ -21,7 +21,7 @@ export default function Sidebar({
     flex flex-col p-6`}
   >
 
-    <h2 className="flex items-center gap-2 text-2xl font-bold mb-8">
+    <h2 className="flex items-center gap-2 text-2xl font-bold mb-8 text-pink-400">
       <Sparkles className="w-6 h-6" />
       ScriptNova
     </h2>

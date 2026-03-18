@@ -39,7 +39,7 @@ settings:"Settings"
 
 return(
 
-<div className="bg-white border-b px-4 md:px-8 py-4 flex items-center gap-4">
+<div className="bg-white border-b-4 px-4 md:px-8 py-4 flex items-center gap-4 bg-pink-200 border-b-pink-500">
 
 <button
 className="md:hidden text-2xl"
@@ -48,7 +48,7 @@ onClick={()=>setMobileMenu(true)}
 ☰
 </button>
 
-<h1 className="text-xl md:text-3xl font-bold">
+<h1 className="text-xl md:text-3xl font-bold ">
 {titles[page]}
 </h1>
 

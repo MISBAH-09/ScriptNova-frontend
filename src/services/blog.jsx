@@ -22,7 +22,7 @@ export const generateKeywords = async (title) => {
         
       
       headers: getAuthHeaders(),
-        timeout: 15000
+        timeout: 150000
       }
     );
 
@@ -59,36 +59,21 @@ export const generateBlog = async ({ title, keywords, tone, length }) => {
   try {
     const response = await axios.post(
       `${API_BASE_URL}/generate-blog/`,
+      { title, keywords, tone, length },
       {
-        title,
-        keywords,
-        tone,
-        length
-      },
-      
-      {
-      headers: getAuthHeaders(),
-      
-        timeout: 30000
+        headers: getAuthHeaders(),
+        timeout: 300000 // 5 minutes
       }
     );
-
     const result = response.data;
-
     if (!result || result.success === false) {
       throw new Error(result?.message || "Blog generation failed");
     }
-
     return result.data;
-
   } catch (error) {
     console.error("❌ Blog API Error:", error);
-
     if (error.response) {
-      throw new Error(
-        error.response.data?.message || 
-        `Server Error (${error.response.status})`
-      );
+      throw new Error(error.response.data?.message || `Server Error (${error.response.status})`);
     } else if (error.request) {
       throw new Error("No response from server.");
     } else {

@@ -7,11 +7,9 @@ import './App.css'
 
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem('userToken')
-
   if (!token) {
     return <Navigate to="/auth" replace />
   }
-
   return children
 }
 

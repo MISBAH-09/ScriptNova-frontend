@@ -6,8 +6,12 @@ import Dashboard from './pages/Dashboard';
 import './App.css'
 
 function ProtectedRoute({ children }) {
-  const user = localStorage.getItem('sn_user')
-  if (!user) return <Navigate to="/auth" replace />
+  const token = localStorage.getItem('userToken')
+
+  if (!token) {
+    return <Navigate to="/auth" replace />
+  }
+
   return children
 }
 

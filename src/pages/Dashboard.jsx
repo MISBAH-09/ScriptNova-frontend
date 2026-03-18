@@ -71,39 +71,37 @@ export default function Dashboard() {
 
   return (
 
-    <div className="flex min-h-screen bg-gray-50 text-slate-900">
-      
-      
-      {mobileMenu && (
-        <div
-        className="fixed inset-0 bg-black/40 z-30 md:hidden"
-        onClick={()=>setMobileMenu(false)}
-        ></div>
-        )}
-      <Sidebar
+  <div className="flex h-screen bg-gray-50 text-slate-900 overflow-hidden">
+
+    {/* Sidebar */}
+    <Sidebar
+      page={page}
+      setPage={setPage}
+      posts={posts}
+      navigate={navigate}
+      mobileMenu={mobileMenu}
+      setMobileMenu={setMobileMenu}
+    />
+
+    {/* Right Content Area */}
+    <div className="flex-1 flex flex-col">
+
+      {/* Header */}
+      <Header
         page={page}
-        setPage={setPage}
-        posts={posts}
-        navigate={navigate}
-        mobileMenu={mobileMenu}
         setMobileMenu={setMobileMenu}
       />
 
-      <div className="flex-1 flex flex-col">
-
-        <Header
-          page={page}
-          setMobileMenu={setMobileMenu}
-        />
-
-        <div className="flex-1 p-4 md:p-8 overflow-auto">
-          {renderPage()}
-        </div>
-
-      </div>
+      {/* Scrollable Page Area */}
+      <main className="flex-1 overflow-y-auto p-4 md:p-8">
+        {renderPage()}
+      </main>
 
     </div>
-  )
+
+  </div>
+
+)
 }
 
 

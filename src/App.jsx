@@ -15,10 +15,11 @@ function ProtectedRoute({ children }) {
 
 export default function App() {
   const location = useLocation()
+  const hideNav = location.pathname === '/dashboard' || location.pathname === '/auth'
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      {location.pathname !== '/dashboard' && <Navbar />}
+      {!hideNav && <Navbar />}
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/auth" element={<Auth />} />

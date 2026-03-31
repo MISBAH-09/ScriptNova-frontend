@@ -399,8 +399,8 @@ export default function BlogGenerator({
               ) : (
                 savedBlogs.map((blog) => (
                   <div key={blog.id} className="p-4 hover:bg-gray-50 transition-colors group">
-                    <div className="flex items-start justify-between gap-2">
-                      <div onClick={() => openEditor(blog.id)}className="flex-1 min-w-0 border-2 border-purple-400">
+                    <div className="flex items-start justify-between gap-2 border-b-2 border-pink-300">
+                      <div onClick={() => openEditor(blog.id)}className="flex-1 min-w-0">
                         <p className="font-medium text-gray-800 text-sm truncate">{blog.title}</p>
                         <div className="flex items-center gap-2 mt-1">
                           <span className="text-xs text-gray-400">{formatDate(blog.created_at)}</span>

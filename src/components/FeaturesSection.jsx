@@ -46,7 +46,11 @@ const cardVariants = {
 function FeaturesSection() {
   return (
     <section id="features" className="relative bg-slate-200 py-24 px-6">
-      <div className="absolute top-0 right-10 w-[300px] h-[300px] bg-pink-500/50 rounded-full blur-3xl pointer-events-none" />
+
+      {/* background  */}
+      <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-pink-500/50 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-0 w-[200px] h-[200px] bg-pink-500/50 rounded-full blur-3xl pointer-events-none" />
+
       <div className="max-w-5xl mx-auto">
 
         {/* Header */}

@@ -13,8 +13,8 @@ export default function Landing() {
     <Navbar/>
     <HeroSection />
     <FeaturesSection />
-    <PricingSection />
     <About />
+    <PricingSection />
     <Footer />
 
     </>

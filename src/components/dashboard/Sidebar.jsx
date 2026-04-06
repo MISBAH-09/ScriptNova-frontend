@@ -59,15 +59,6 @@ export default function Sidebar({
     </nav>
 
     <div className="mt-auto pt-6 border-t border-slate-700">
-
-      <p className="text-xs text-gray-400">
-        Total Blogs
-      </p>
-
-      <p className="text-2xl font-bold">
-        {posts.length}
-      </p>
-
       <button
         className="mt-4 w-full bg-red-600 py-2 rounded"
         onClick={()=>{

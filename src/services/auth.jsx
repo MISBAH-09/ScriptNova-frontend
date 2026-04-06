@@ -80,7 +80,62 @@ export const logoutUser = () => {
   localStorage.removeItem("userId");
 };
 
+
+export const getUserById = async (id) => {
+  try {
+    const response = await axios.get(
+      `${API_BASE_URL}/user/${id}/`,
+      {
+        headers: getAuthHeaders(),
+      }
+    );
+
+    const result = response.data;
+
+    if (!result.success) {
+      throw new Error(result.message);
+    }
+
+    return result.data;
+
+  } catch (error) {
+    throw new Error(error.response?.data?.message || "Failed to fetch user");
+  }
+};
+
 export const currentUserId = () => {
   return localStorage.getItem("userId"); 
 };
 
+
+export const updateUser = async (userData) => {
+  try {
+    const response = await axios.put(
+      `${API_BASE_URL}/user/update/`,
+      userData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          ...getAuthHeaders(),
+        },
+      }
+    );
+
+    const result = response.data;
+
+    if (!result.success) {
+      throw new Error(result.message || "Update failed");
+    }
+
+    return result;
+
+  } catch (error) {
+    console.error("Update API error:", error);
+
+    if (error.response?.data?.message) {
+      throw new Error(error.response.data.message);
+    }
+
+    throw new Error("Server not responding");
+  }
+};

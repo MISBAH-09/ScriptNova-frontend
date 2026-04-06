@@ -65,8 +65,12 @@ export default function BlogEditor({ blog, setPage }) {
   const [articleAction, setArticleAction]               = useState("rephrase")
   const [articleActionLoading, setArticleActionLoading] = useState(false)
 
-  useEffect(() => {
-    if (!blog?.id) return
+  // useEffect(() => {
+   useEffect(() => {
+  if (!blog?.id) {
+    setLoading(false); // 🔥 important fix
+    return;
+  }
     ;(async () => {
       try {
         setLoading(true)
@@ -155,11 +159,43 @@ export default function BlogEditor({ blog, setPage }) {
     setTimeout(() => setCopiedSlug(false), 2000)
   }
 
-  if (loading) return (
-    <div className="flex items-center justify-center py-20 text-gray-400 gap-2">
-      <Spin cls="w-5 h-5" /> Loading blog...
-    </div>
-  )
+  if (!blog?.id) {
+    return (
+      <div className="flex flex-col bg-gray-50 items-center justify-center h-[30vh] text-center border-dotted border-2 border-slate-500">
+
+        <h2 className="text-2xl font-semibold mb-3 ">
+          No Blog Selected
+        </h2>
+
+        <p className="mb-6 text-sm">
+          Select a blog from My Blogs or create a new one to start editing.
+        </p>
+
+        <div className="flex gap-3">
+          <button
+            onClick={() => setPage("manage")}
+            className="bg-pink-500 hover:bg-pink-600 text-white  px-4 py-2 rounded"
+          >
+            My Blogs
+          </button>
+
+          <button
+            onClick={() => setPage("generate")}
+            className="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded"
+          >
+            Generate Blog
+          </button>
+        </div>
+
+      </div>
+    );
+  }
+
+    if (loading && blog?.id) return (
+        <div className="flex items-center justify-center py-20 text-gray-400 gap-2">
+          <Spin cls="w-5 h-5" /> Loading blog...
+        </div>
+      )
 
   const isStarred = current.favourite === "favourite"
 

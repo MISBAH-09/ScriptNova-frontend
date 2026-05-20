@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { loginUser, SignupUser } from '../services/auth';
+import { createCheckoutSession } from "../services/payment";
 import { Sparkles} from "lucide-react";
 
 const BRAND = import.meta.env.VITE_BRAND_NAME || "ScriptNova";
@@ -14,6 +15,8 @@ export default function Auth() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const next = searchParams.get("next");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -23,6 +26,11 @@ export default function Auth() {
     try {
       if (isLogin) {
         await loginUser(email, password);
+        if (next === "checkout") {
+          const checkoutUrl = await createCheckoutSession();
+          window.location.href = checkoutUrl;
+          return;
+        }
         navigate('/dashboard');
       } else {
         const nameParts = name.split(' ');

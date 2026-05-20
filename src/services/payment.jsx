@@ -51,6 +51,13 @@ export const initiatePayment = async ({ plan_name, account_number, instrument_ty
   } catch (e) { handleError(e); }
 };
 
+export const createCheckoutSession = async () => {
+  try {
+    const r = await api.post("/payments/create-checkout-session/");
+    return r.data?.data?.url;
+  } catch (e) { handleError(e); }
+};
+
 export const verifyOTPAndPay = async ({ order_id, transaction_token, otp }) => {
   try {
     const r = await api.post("/payment/verify-otp/", {

@@ -1,6 +1,23 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import PaymentModal from "./PaymentModal";
 
 function PricingSection() {
+  const [selected, setSelected] = useState(null);
+
+  const freePlan = {
+    name: "free",
+    display_name: "Free",
+    price_pkr: "0",
+    duration_days: 30,
+  };
+
+  const proPlan = {
+    name: "pro",
+    display_name: "Pro",
+    price_pkr: "1900",
+    duration_days: 30,
+  };
+
   return (
     <section id="pricing" className="py-24 bg-slate-200 text-white">
       <div className="max-w-6xl mx-auto px-6 text-center">
@@ -14,7 +31,10 @@ function PricingSection() {
               <li>Basic Dashboard</li>
               <li>Email Support</li>
             </ul>
-            <button className="mt-8 w-full bg-indigo-600 py-3 rounded-xl font-semibold">
+            <button
+              onClick={() => setSelected(freePlan)}
+              className="mt-8 w-full bg-indigo-600 py-3 rounded-xl font-semibold"
+            >
               Get Started
             </button>
           </div>
@@ -27,7 +47,10 @@ function PricingSection() {
               <li>Advanced Analytics</li>
               <li>Priority Support</li>
             </ul>
-            <button className="mt-8 w-full bg-black py-3 rounded-xl font-semibold">
+            <button
+              onClick={() => setSelected(proPlan)}
+              className="mt-8 w-full bg-black py-3 rounded-xl font-semibold"
+            >
               Upgrade Now
             </button>
           </div>
@@ -44,3 +67,5 @@ function PricingSection() {
     </section>
   );
 }
+
+export default PricingSection;

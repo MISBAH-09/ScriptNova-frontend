@@ -9,11 +9,12 @@ export default function Sidebar({ page, setPage, navigate, mobileMenu, setMobile
   };
 
   const navItems = [
-    { key: "generate",  label: "Generate Blog",  icon: <Zap size={18} /> },
-    { key: "manage",    label: "My Blogs",        icon: <BookOpen size={18} /> },
-    { key: "editor",    label: "Editor",          icon: <PenSquare size={18} /> },
-    { key: "humanize",  label: "Humanize",        icon: <Wand2 size={18} />, badge: "AI" },
-    { key: "settings",  label: "Settings",        icon: <Settings size={18} /> },
+    { key: "generate",     label: "Generate Blog",  icon: <Zap size={18} /> },
+    { key: "manage",       label: "My Blogs",        icon: <BookOpen size={18} /> },
+    { key: "editor",       label: "Editor",          icon: <PenSquare size={18} /> },
+    { key: "humanize",     label: "Humanize",        icon: <Wand2 size={18} />, badge: "AI" },
+    { key: "subscription", label: "Subscription",    icon: <Wand2 size={18} /> },
+    { key: "settings",     label: "Settings",        icon: <Settings size={18} /> },
   ];
 
   return (
